@@ -9,13 +9,34 @@ export const fetchPosts = () => {
       const response = await axios.get(
         "https://simple-blog-api.crew.red/posts"
       );
-      console.log(response.data)
+
       dispatch({
         type: PostActionTypes.FETCH_POSTS_SUCCESS,
-        payload: response.data
+        payload: response.data,
       });
     } catch (e) {
       dispatch({ type: PostActionTypes.FETCH_POSTS_ERROR, payload: e.message });
+    }
+  };
+};
+
+export const fetchOnePost = (id) => {
+  return async (dispatch: Dispatch<PostAction>) => {
+    try {
+      dispatch({ type: PostActionTypes.FETCH_ONE_POST });
+      const response = await axios.get(
+        `https://simple-blog-api.crew.red/posts/${id}?_embed=comments`
+      );
+
+      dispatch({
+        type: PostActionTypes.FETCH_ONE_POST_SUCCESS,
+        payload: response.data,
+      });
+    } catch (e) {
+      dispatch({
+        type: PostActionTypes.FETCH_ONE_POST_ERROR,
+        payload: e.message,
+      });
     }
   };
 };
