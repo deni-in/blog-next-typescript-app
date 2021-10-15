@@ -1,8 +1,8 @@
 export type Post = {
-  title?: string,
-  body?: string,
-  id?: number
-}
+  title?: string;
+  body?: string;
+  id?: number;
+};
 
 export interface PostState {
   posts: any[];
@@ -19,6 +19,10 @@ export enum PostActionTypes {
   FETCH_ONE_POST = "FETCH_ONE_POST",
   FETCH_ONE_POST_SUCCESS = "FETCH_ONE_POST_SUCCESS",
   FETCH_ONE_POST_ERROR = "FETCH_ONE_POST_ERROR",
+
+  ADD_POST = "ADD_POST",
+  ADD_POST_SUCCESS = "ADD_POST_SUCCESS",
+  ADD_POST_ERROR = "ADD_POST_ERROR",
 }
 
 interface FetchPostsAction {
@@ -43,6 +47,17 @@ interface FetchOnePostErrorAction {
   type: PostActionTypes.FETCH_ONE_POST_ERROR;
   payload: string;
 }
+interface AddPostAction {
+  type: PostActionTypes.ADD_POST;
+}
+interface AddPostSuccessAction {
+  type: PostActionTypes.ADD_POST_SUCCESS;
+  payload: Object;
+}
+interface AddPostErrorAction {
+  type: PostActionTypes.ADD_POST_ERROR;
+  payload: string;
+}
 
 export type PostAction =
   | FetchPostsAction
@@ -50,4 +65,7 @@ export type PostAction =
   | FetchPostsErrorAction
   | FetchOnePostAction
   | FetchOnePostSuccessAction
-  | FetchOnePostErrorAction;
+  | FetchOnePostErrorAction
+  | AddPostAction
+  | AddPostSuccessAction
+  | AddPostErrorAction;

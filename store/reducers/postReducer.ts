@@ -54,6 +54,27 @@ export const postReducer = (
         error: action.payload,
         post: {},
       };
+    case PostActionTypes.ADD_POST:
+      return {
+        loading: true,
+        posts: state.posts,
+        error: null,
+        post: {},
+      };
+    case PostActionTypes.ADD_POST_SUCCESS:
+      return {
+        loading: false,
+        posts: [...state.posts, action.payload],
+        error: null,
+        post: {},
+      };
+    case PostActionTypes.ADD_POST_ERROR:
+      return {
+        loading: false,
+        posts: state.posts,
+        error: action.payload,
+        post: {},
+      };
     default:
       return state;
   }
